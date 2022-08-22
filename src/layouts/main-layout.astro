@@ -1,0 +1,26 @@
+---
+import Footer from "../components/footer.svelte";
+import Header from "../components/header.svelte";
+import type { Breadcrumb } from "../models";
+
+interface Props {
+  breadcrumbs: readonly Breadcrumb[]
+  title: string
+}
+
+const { breadcrumbs, title } = Astro.props
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header breadcrumbs={breadcrumbs} />
+    <slot />
+    <Footer />
+  </body>
+</html>

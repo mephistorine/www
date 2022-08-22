@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply text-[18px] sm:text-[16px]
+  }
+
+  body {
+    @apply text-[#37352f]
+  }
+
+  summary {
+    @apply cursor-pointer select-none
+  }
+}
+
+.wrap {
+  @apply max-w-[60ch] mx-auto px-4
+}
+
+.interactive {
+  @apply transition-colors hover:bg-gray-200 py-0.5 px-1 rounded
+}

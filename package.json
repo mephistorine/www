@@ -3,13 +3,15 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "start": "astro dev --port 4000",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "devDependencies": {
-    "astro": "^1.0.6"
+    "@astrojs/svelte": "^1.0.0",
+    "@astrojs/tailwind": "^1.0.0",
+    "astro": "^1.0.6",
+    "svelte": "^3.49.0"
   }
 }
