@@ -19,14 +19,21 @@ const breadcrumbs: Breadcrumb[] = [
 ---
 
 <Baselayout title={frontmatter.title} breadcrumbs={breadcrumbs}>
-  <header>
-    <div>
-      <!-- POSTER -->
-    </div>
+  <header class="flex flex-col gap-4">
+    {
+      false && (
+        <div>
+          <img
+            class="max-h-[150px] sm:max-h-[300px] w-full max-w-[1440px] mx-auto my-0 object-cover object-center"
+            src={frontmatter.poster.src}
+          />
+        </div>
+      )
+    }
 
     {
       frontmatter.icon && (
-        <div>
+        <div class="leading-none">
           <PageIcon icon={frontmatter.icon} size="4rem" />
         </div>
       )
@@ -49,9 +56,11 @@ const breadcrumbs: Breadcrumb[] = [
               frontmatter.tags.map((slug) => {
                 return (
                   <li>
-                    <a href={`/tags/${ slug }`}><ArticleTag slug={slug} /></a>
+                    <a href={`/tags/${slug}`}>
+                      <ArticleTag slug={slug} />
+                    </a>
                   </li>
-                )
+                );
               })
             }
           </ul>

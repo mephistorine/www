@@ -9,9 +9,10 @@ import type { Breadcrumb } from "../models";
 interface Props {
   breadcrumbs: readonly Breadcrumb[];
   title: string;
+  enableWrap?: boolean;
 }
 
-const { breadcrumbs, title } = Astro.props;
+const { breadcrumbs, title, enableWrap = true } = Astro.props as Props;
 ---
 
 <html lang="ru">
@@ -23,7 +24,7 @@ const { breadcrumbs, title } = Astro.props;
   </head>
   <body>
     <Header breadcrumbs={breadcrumbs} />
-    <main class="wrap py-4">
+    <main class:list={{ wrap: enableWrap }} class="py-4">
       <slot />
     </main>
     <Footer />

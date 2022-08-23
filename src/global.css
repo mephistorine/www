@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --max-width: 60ch;
+  }
+
   html {
     @apply text-[18px] sm:text-[16px]
   }
@@ -17,7 +21,7 @@
 }
 
 .wrap {
-  @apply max-w-[60ch] mx-auto px-4
+  @apply max-w-[var(--max-width)] mx-auto px-4
 }
 
 .interactive {
