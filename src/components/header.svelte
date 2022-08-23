@@ -11,7 +11,7 @@
     <div>
       <ul class="flex justify-between items-center gap-2">
         {#each breadcrumbs as breadcrumb}
-          <li>
+          <li class="after:content-['/'] after:ml-[0.3rem] after:text-[#bebebe] hidden first:flex first:after:invisible last:after:hidden sm:flex sm:first:after:visible">
             <a
               href={breadcrumb.url}
               class="special-link flex items-center gap-2 interactive"

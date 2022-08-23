@@ -1,0 +1,41 @@
+---
+import PageIcon from "../components/page-icon.svelte";
+import type { Breadcrumb } from "../models";
+import { BREADCRUMBS } from "../static-data";
+import Baselayout from "./base.layout.astro";
+const { frontmatter } = Astro.props;
+
+const breadcrumbs: Breadcrumb[] = [
+  BREADCRUMBS.home,
+  BREADCRUMBS.articles,
+  {
+    name: frontmatter.title,
+    url: frontmatter.url,
+    icon: frontmatter.icon,
+  },
+];
+---
+
+<Baselayout title={frontmatter.title} breadcrumbs={breadcrumbs}>
+  <header>
+    <div>
+      <!-- POSTER -->
+    </div>
+
+    {
+      frontmatter.icon && (
+        <div>
+          <PageIcon icon={frontmatter.icon} size="4rem" />
+        </div>
+      )
+    }
+
+    <div>
+      <h1 class="text-6xl font-bold">{frontmatter.title}</h1>
+    </div>
+  </header>
+
+  <div class="sm:py-4">
+    <slot />
+  </div>
+</Baselayout>

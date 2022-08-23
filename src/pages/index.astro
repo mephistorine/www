@@ -1,7 +1,5 @@
 ---
-import "../global.css";
-
-import MainLayout from "../layouts/main-layout.astro";
+import BaseLayout from "../layouts/base.layout.astro";
 import PageIcon from "../components/page-icon.svelte";
 import { BREADCRUMBS } from "../static-data";
 import type { Breadcrumb } from "../models";
@@ -14,34 +12,33 @@ const pages: readonly Breadcrumb[] = [
 ];
 ---
 
-<MainLayout title="test" breadcrumbs={[ BREADCRUMBS.home ]}>
-	<div class="wrap py-4">
-		<div class="flex flex-col gap-8">
-			<section>
-				<ul class="flex justify-between gap-4 flex-col sm:flex-row">
-					{
-						pages.map((page) => <li>
-							<a href={ page.url } class="interactive">
-								{ page.icon !== null && <PageIcon icon={ page.icon } size="1em" /> }
-								<span>{ page.name }</span>
+<BaseLayout title="test" breadcrumbs={[BREADCRUMBS.home]}>
+	<div class="flex flex-col gap-8">
+		<section>
+			<ul class="flex justify-between gap-4 flex-col sm:flex-row">
+				{
+					pages.map((page) => (
+						<li>
+							<a href={page.url} class="interactive">
+								{page.icon !== null && <PageIcon icon={page.icon} size="1em" />}
+								<span>{page.name}</span>
 							</a>
-						</li>)
-					}
-				</ul>
-			</section>
+						</li>
+					))
+				}
+			</ul>
+		</section>
 
-			<section>
-				<h2 class="text-3xl font-bold">Привет 👋</h2>
-				<p>
-					Тут я делюсь своим опытом, в разработке приложений и не только.
-					Технический стек Angular, Typescript, RxJS и Leaflet.
-				</p>
-			</section>
+		<section>
+			<h2 class="text-3xl font-bold">Привет 👋</h2>
+			<p>
+				Тут я делюсь своим опытом, в разработке приложений и не только.
+				Технический стек Angular, Typescript, RxJS и Leaflet.
+			</p>
+		</section>
 
-			<section>
-				<h2 class="text-3xl font-bold">Свежее</h2>
-				
-			</section>
-		</div>
+		<section>
+			<h2 class="text-3xl font-bold">Свежее</h2>
+		</section>
 	</div>
-</MainLayout>
+</BaseLayout>

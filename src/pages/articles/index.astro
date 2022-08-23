@@ -1,0 +1,49 @@
+---
+import PageIcon from "../../components/page-icon.svelte";
+import Baselayout from "../../layouts/base.layout.astro";
+import { articleCompare } from "../../lib";
+import type { Article } from "../../models";
+import { BREADCRUMBS } from "../../static-data";
+
+const articles = await Astro.glob<Article>("./*.(md|mdx)").then((items) =>
+  items.slice().sort((a, b) => articleCompare(a, b))
+);
+---
+
+<Baselayout
+  title={BREADCRUMBS.articles.name}
+  breadcrumbs={[BREADCRUMBS.articles]}
+>
+  <header class="mb-4">
+    {
+      BREADCRUMBS.articles.icon && (
+        <div>
+          <PageIcon icon={BREADCRUMBS.articles.icon} size="4rem" />
+        </div>
+      )
+    }
+
+    <div>
+      <h1 class="text-6xl font-bold">{BREADCRUMBS.articles.name}</h1>
+    </div>
+  </header>
+
+  <div>
+    <ul class="pl-4">
+      {
+        articles.map((article) => {
+          return (
+            <li class="relative before:content-['—'] before:font-mono before:absolute before:-left-4">
+              <a class="like-link" href={article.url}>
+                {article.frontmatter.icon && (
+                  <PageIcon icon={article.frontmatter.icon} size="1em" />
+                )}
+                <span>{article.frontmatter.title}</span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</Baselayout>

@@ -23,3 +23,7 @@
 .interactive {
   @apply transition-colors hover:bg-gray-200 py-0.5 px-1 rounded
 }
+
+.like-link {
+  @apply border-b border-current hover:border-transparent
+}

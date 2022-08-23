@@ -1,14 +1,17 @@
 ---
+import "../global.css";
+
 import Footer from "../components/footer.svelte";
 import Header from "../components/header.svelte";
+import { site } from "../static-data";
 import type { Breadcrumb } from "../models";
 
 interface Props {
-  breadcrumbs: readonly Breadcrumb[]
-  title: string
+  breadcrumbs: readonly Breadcrumb[];
+  title: string;
 }
 
-const { breadcrumbs, title } = Astro.props
+const { breadcrumbs, title } = Astro.props;
 ---
 
 <html lang="ru">
@@ -16,11 +19,13 @@ const { breadcrumbs, title } = Astro.props
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{title} • {site.name}</title>
   </head>
   <body>
     <Header breadcrumbs={breadcrumbs} />
-    <slot />
+    <main class="wrap py-4">
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>
