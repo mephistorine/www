@@ -1,6 +1,7 @@
 ---
 import PageIcon from "../components/page-icon.svelte";
 import ArticleTag from "../components/article-tag.svelte";
+import SocialButtons from "../components/social-buttons.svelte";
 import { formatDate } from "../lib";
 import type { Breadcrumb } from "../models";
 import { BREADCRUMBS } from "../static-data";
@@ -69,7 +70,11 @@ const breadcrumbs: Breadcrumb[] = [
     </div>
   </header>
 
-  <div class="sm:py-4 prose prose-lg">
+  <div class="sm:my-4 prose prose-lg">
     <slot />
+  </div>
+
+  <div class="my-4">
+    <SocialButtons title={frontmatter.title} url={`${ Astro.site }${ frontmatter.url }`} />
   </div>
 </Baselayout>
