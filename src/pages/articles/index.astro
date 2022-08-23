@@ -1,18 +1,18 @@
 ---
+import type { Article } from "../../models";
 import PageIcon from "../../components/page-icon.svelte";
 import Baselayout from "../../layouts/base.layout.astro";
 import { articleCompare } from "../../lib";
-import type { Article } from "../../models";
 import { BREADCRUMBS } from "../../static-data";
 
-const articles = await Astro.glob<Article>("./*.(md|mdx)").then((items) =>
-  items.slice().sort((a, b) => articleCompare(a, b))
+const articles = await Astro.glob<Article>("./*.mdx").then((items) =>
+  items.slice().sort((a, b) => articleCompare(a.frontmatter, b.frontmatter))
 );
 ---
 
 <Baselayout
   title={BREADCRUMBS.articles.name}
-  breadcrumbs={[BREADCRUMBS.articles]}
+  breadcrumbs={[BREADCRUMBS.home, BREADCRUMBS.articles]}
 >
   <header class="mb-4">
     {

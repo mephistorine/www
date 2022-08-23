@@ -1,5 +1,7 @@
 ---
 import PageIcon from "../components/page-icon.svelte";
+import ArticleTag from "../components/article-tag.svelte";
+import { formatDate } from "../lib";
 import type { Breadcrumb } from "../models";
 import { BREADCRUMBS } from "../static-data";
 import Baselayout from "./base.layout.astro";
@@ -32,6 +34,29 @@ const breadcrumbs: Breadcrumb[] = [
 
     <div>
       <h1 class="text-6xl font-bold">{frontmatter.title}</h1>
+
+      <div class="grid auto-rows-min grid-cols-[150px_1fr] gap-2 mb-4">
+        <div class="text-black/50">Время публикации</div>
+        <div>{formatDate(new Date(frontmatter.createTime))}</div>
+
+        <div class="text-black/50">Время обновления</div>
+        <div>{formatDate(new Date(frontmatter.updateTime))}</div>
+
+        <div class="text-black/50">Метки</div>
+        <div>
+          <ul class="flex gap-2">
+            {
+              frontmatter.tags.map((slug) => {
+                return (
+                  <li>
+                    <a href={`/tags/${ slug }`}><ArticleTag slug={slug} /></a>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
+      </div>
     </div>
   </header>
 
