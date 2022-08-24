@@ -1,0 +1,168 @@
+---
+import { Debug } from "astro/components";
+import PageIcon from "../../components/page-icon.svelte";
+import Baselayout from "../../layouts/base.layout.astro";
+import type { Conference, Speach, Talk } from "../../models";
+import { BREADCRUMBS, getAllTalks, getConference } from "../../static-data";
+
+interface SpeachForView extends Speach {
+  conference: Conference;
+}
+
+interface TalkForView extends Talk {
+  speaches: readonly SpeachForView[];
+}
+
+const speachFiles = await Astro.glob<Omit<SpeachForView, "notesUrl">>(
+  "./*.mdx"
+);
+const speaches = speachFiles.map((s) => s.frontmatter);
+
+const talks = getAllTalks().map((talk: Talk) => {
+  const speachesByTalk: readonly SpeachForView[] = speaches
+    .filter((s) => s.talkId === talk.id)
+    .map((speach) => {
+      const speachFile = speachFiles.find(
+        (t) =>
+          t.frontmatter.talkId === speach.talkId &&
+          t.frontmatter.conferenceId === speach.conferenceId
+      );
+      const conference = getConference(speach.conferenceId);
+
+      if (conference === null) {
+        throw new TypeError(
+          `Conference with id="${speach.conferenceId}" not found`
+        );
+      }
+
+      return {
+        ...speach,
+        notesUrl: speachFile?.url,
+        conference,
+      } as SpeachForView;
+    });
+
+  return {
+    ...talk,
+    speaches: speachesByTalk,
+  } as TalkForView;
+});
+---
+
+<Baselayout
+  title={BREADCRUMBS.talks.name}
+  breadcrumbs={[BREADCRUMBS.home, BREADCRUMBS.talks]}
+>
+  <header class="mb-4">
+    {
+      BREADCRUMBS.talks.icon && (
+        <div>
+          <PageIcon icon={BREADCRUMBS.talks.icon} size="4rem" />
+        </div>
+      )
+    }
+
+    <div>
+      <h1 class="text-6xl font-bold">{BREADCRUMBS.talks.name}</h1>
+    </div>
+  </header>
+
+  <div class="overflow-auto flex flex-col gap-6">
+    {
+      talks.map((talk) => {
+        return (
+          <article class="flex flex-col gap-2">
+            <h2 id={talk.id} class="group text-2xl font-bold">
+              <span>{talk.title}</span>
+              <a
+                class="invisible group-hover:visible ml-2"
+                href={`#${talk.id}`}
+              >
+                ⌗
+              </a>
+            </h2>
+
+            <div class="text-sm" set:html={talk.description} />
+
+            <div>
+              <ul class="flex flex-col gap-2 pl-4">
+                {talk.speaches.map((speach) => {
+                  return (
+                    <li class="relative before:content-['—'] before:font-mono before:absolute before:-left-4">
+                      <h3>
+                        {speach.siteUrl !== null && (
+                          <a
+                            class="like-link"
+                            href={speach.siteUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {speach.conference.name}
+                          </a>
+                        )}
+                        {speach.siteUrl === null && (
+                          <span>{speach.conference.name}</span>
+                        )}
+                        <span class="select-none"> / </span>
+                        <time
+                          datetime={new Date(speach.time).toISOString()}
+                          class="text-gray-500"
+                        >
+                          {new Date(speach.time).toLocaleString("ru-RU", {
+                            dateStyle: "long",
+                          })}
+                        </time>
+                        <span class="text-xs select-none bg-gray-200 px-1 py-0.5 rounded ml-1">
+                          {speach.language}
+                        </span>
+                      </h3>
+
+                      <ul class="text-sm flex gap-4 text-gray-500">
+                        {speach.slidesUrl !== null && (
+                          <li>
+                            <a
+                              class="like-link"
+                              href={speach.slidesUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              Слайды
+                            </a>
+                          </li>
+                        )}
+                        {speach.videoUrl !== null && (
+                          <li>
+                            <a
+                              class="like-link"
+                              href={speach.videoUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              Видеозапись
+                            </a>
+                          </li>
+                        )}
+                        {speach.notesUrl !== null && (
+                          <li>
+                            <a
+                              class="like-link"
+                              href={speach.notesUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              Заметки
+                            </a>
+                          </li>
+                        )}
+                      </ul>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+</Baselayout>

@@ -54,7 +54,7 @@ const breadcrumbs: Breadcrumb[] = [
         <div>
           <ul class="flex gap-2">
             {
-              frontmatter.tags.map((slug) => {
+              frontmatter.tags.map((slug: any) => {
                 return (
                   <li>
                     <a href={`/tags/${slug}`}>

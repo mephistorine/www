@@ -1,3 +1,5 @@
 export * from "./breadcrumbs"
 export * from "./site"
 export * from "./tags"
+export * from "./talks"
+export * from "./conferences"
