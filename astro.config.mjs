@@ -8,5 +8,10 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   site: "https://mephi.dev",
   trailingSlash: "ignore",
-  integrations: [svelte(), tailwind(), mdx()]
+  integrations: [svelte(), tailwind(), mdx()],
+  markdown: {
+    shikiConfig: {
+      theme: "github-dark-dimmed"
+    }
+  }
 });

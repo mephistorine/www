@@ -40,7 +40,7 @@ const breadcrumbs: Breadcrumb[] = [
       )
     }
 
-    <div>
+    <div class="flex flex-col gap-4">
       <h1 class="text-6xl font-bold">{frontmatter.title}</h1>
 
       <div class="grid auto-rows-min grid-cols-[150px_1fr] gap-2 mb-4">
@@ -70,7 +70,7 @@ const breadcrumbs: Breadcrumb[] = [
     </div>
   </header>
 
-  <div class="sm:my-4 prose prose-lg">
+  <div class="sm:my-4 prose prose-lg prose-p:my-2">
     <slot />
   </div>
 
