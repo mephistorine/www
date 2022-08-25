@@ -1,24 +1,17 @@
 ---
 import "../global.css";
-import { site } from "../static-data";
+import DumpLayout from "../layouts/dump.layout.astro";
 ---
 
-<html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>404 Страница не найдена • {site.name}</title>
-  </head>
-  <body>
-    <main
-      class="absolute top-0 left-0 w-full h-full flex justify-center items-center"
-    >
-      <div class="text-center">
-        <h1 class="text-8xl font-bold mb-4">404</h1>
-        <p>
-          <a class="like-link" href="/">Вернуться на главную</a>
-        </p>
-      </div>
-    </main>
-  </body>
-</html>
+<DumpLayout title="404 — страница не найдена">
+  <main
+    class="dark:bg-zinc-800 dark:text-slate-200 absolute top-0 left-0 w-full h-full flex justify-center items-center"
+  >
+    <div class="text-center">
+      <h1 class="text-8xl font-bold mb-4">404</h1>
+      <p>
+        <a class="like-link" href="/">Вернуться на главную</a>
+      </p>
+    </div>
+  </main>
+</DumpLayout>

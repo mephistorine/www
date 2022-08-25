@@ -27,7 +27,12 @@
       </ul>
     </div>
 
-    <div>
+    <div class="flex gap-2">
+      <select id="theme-switcher" class="bg-transparent">
+        <option value="DARK">Темная</option>
+        <option value="LIGHT">Светлая</option>
+        <option selected value="SYSTEM">Системная</option>
+      </select>
       <button class="interactive flex gap-1 items-center">
         <div class="w-[1em]">
           <Icon name="search" />

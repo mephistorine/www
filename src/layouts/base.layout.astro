@@ -1,9 +1,9 @@
 ---
 import "../global.css";
 
+import DumpLayout from "./dump.layout.astro";
 import Footer from "../components/footer.svelte";
 import Header from "../components/header.svelte";
-import { site } from "../static-data";
 import type { Breadcrumb } from "../models";
 
 interface Props {
@@ -15,18 +15,10 @@ interface Props {
 const { breadcrumbs, title, enableWrap = true } = Astro.props as Props;
 ---
 
-<html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title} • {site.name}</title>
-  </head>
-  <body>
-    <Header breadcrumbs={breadcrumbs} />
+<DumpLayout title={title}>
+  <Header breadcrumbs={breadcrumbs} />
     <main class:list={{ wrap: enableWrap }} class="py-4">
       <slot />
     </main>
     <Footer />
-  </body>
-</html>
+</DumpLayout>

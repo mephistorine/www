@@ -44,13 +44,13 @@ const breadcrumbs: Breadcrumb[] = [
       <h1 class="text-6xl font-bold">{frontmatter.title}</h1>
 
       <div class="grid auto-rows-min grid-cols-[150px_1fr] gap-2 mb-4">
-        <div class="text-black/50">Время публикации</div>
+        <div class="text-black/50 dark:text-white/50">Время публикации</div>
         <div>{formatDate(new Date(frontmatter.createTime))}</div>
 
-        <div class="text-black/50">Время обновления</div>
+        <div class="text-black/50 dark:text-white/50">Время обновления</div>
         <div>{formatDate(new Date(frontmatter.updateTime))}</div>
 
-        <div class="text-black/50">Метки</div>
+        <div class="text-black/50 dark:text-white/50">Метки</div>
         <div>
           <ul class="flex gap-2">
             {
@@ -70,7 +70,7 @@ const breadcrumbs: Breadcrumb[] = [
     </div>
   </header>
 
-  <div class="sm:my-4 prose prose-lg prose-p:my-2">
+  <div class="sm:my-4 prose prose-lg prose-p:my-2 dark:prose-invert">
     <slot />
   </div>
 

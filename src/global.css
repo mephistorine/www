@@ -8,11 +8,7 @@
   }
 
   html {
-    @apply text-[18px] sm:text-[16px]
-  }
-
-  body {
-    @apply text-[#37352f]
+    color-scheme: light dark;
   }
 
   summary {
@@ -25,7 +21,7 @@
 }
 
 .interactive {
-  @apply transition-colors hover:bg-gray-200 py-0.5 px-1 rounded
+  @apply transition-colors hover:bg-black/20 py-0.5 px-1 rounded
 }
 
 .like-link {

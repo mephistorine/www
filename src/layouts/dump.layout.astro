@@ -1,0 +1,59 @@
+---
+import "../global.css";
+import { site } from "../static-data";
+interface Props {
+  title: string;
+}
+const { title } = Astro.props as Props;
+---
+
+<html lang="ru" class="text-[18px] sm:text-[16px]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title} • {site.name}</title>
+  </head>
+  <body class="text-zinc-800 dark:text-slate-200 dark:bg-zinc-800">
+    <slot />
+    <script defer>
+      function applyTheme(name) {
+        const html = document.documentElement;
+
+        const themeName =
+          name === "SYSTEM"
+            ? matchMedia("(prefers-color-scheme: light)").matches
+              ? "LIGHT"
+              : "DARK"
+            : name;
+
+        if (themeName === "DARK") {
+          html.classList.add("dark");
+        } else {
+          html.classList.remove("dark");
+        }
+      }
+
+      /** @type {HTMLSelectElement} */
+      const themeSwitcher = document.querySelector("#theme-switcher");
+      const mediaQueryList = matchMedia("(prefers-color-scheme: light)");
+
+      mediaQueryList.addEventListener("change", (event) => {
+        if (themeSwitcher.value !== "SYSTEM") {
+          return;
+        }
+
+        applyTheme(event.matches ? "LIGHT" : "DARK");
+      });
+
+      themeSwitcher.addEventListener("change", () => {
+        const themeName = themeSwitcher.value;
+        applyTheme(themeName);
+        localStorage.setItem("theme", themeName);
+      });
+
+      const theme = localStorage.getItem("theme") ?? "SYSTEM";
+      themeSwitcher.value = theme;
+      applyTheme(theme);
+    </script>
+  </body>
+</html>
