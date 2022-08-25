@@ -1,0 +1,71 @@
+---
+import { formatDate } from "../lib";
+import type { Speach } from "../models";
+import { BREADCRUMBS, getTalk } from "../static-data";
+import Baselayout from "./base.layout.astro";
+
+const { talkId, url, time, language, slidesUrl, videoUrl, siteUrl } = Astro.props.frontmatter as Speach & {
+  url: string;
+};
+
+const talk = getTalk(talkId);
+
+if (talk === null) {
+  throw new TypeError(`[TalkNotes]: Talk with id="${talkId}" not found`);
+}
+
+const title = `Заметки доклада «${talk.title}»`;
+const computedBookmarks = [
+  BREADCRUMBS.home,
+  BREADCRUMBS.talks,
+  {
+    name: talk.title,
+    url: `/talks#${talk.id}`,
+    icon: null,
+  },
+  {
+    name: "Заметки",
+    url: url,
+    icon: null,
+  },
+];
+---
+
+<Baselayout title={title} breadcrumbs={computedBookmarks}>
+  <header class="mb-4">
+    <div class="flex flex-col gap-4">
+      <h1 class="text-6xl font-bold">{title}</h1>
+
+      <div class="grid auto-rows-min grid-cols-[150px_1fr] gap-2 mb-4">
+        <div class="text-black/50">Дата выступления</div>
+        <div>{formatDate(new Date(time))}</div>
+
+        <div class="text-black/50">Язык выступления</div>
+        <div>
+          <span class="text-xs select-none bg-gray-200 px-1 py-0.5 rounded ml-1">
+            {language}
+          </span>
+        </div>
+
+        <div class="text-black/50">Слайды</div>
+        <div class="whitespace-nowrap overflow-hidden text-ellipsis">
+          <a class="like-link" href={slidesUrl} target="_blank" rel="noreferrer">{slidesUrl}</a>
+        </div>
+
+        <div class="text-black/50">Видеозапись</div>
+        <div class="whitespace-nowrap overflow-hidden text-ellipsis">
+          <a class="like-link" href={videoUrl} target="_blank" rel="noreferrer">{videoUrl}</a>
+        </div>
+
+        <div class="text-black/50">Сайт</div>
+        <div class="whitespace-nowrap overflow-hidden text-ellipsis">
+          <a class="like-link" href={siteUrl} target="_blank" rel="noreferrer">{siteUrl}</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="sm:my-4 prose prose-lg prose-p:my-2">
+    <slot />
+  </div>
+</Baselayout>
