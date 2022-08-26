@@ -3,7 +3,7 @@ import PageIcon from "../components/page-icon.svelte";
 import { formatDate } from "../lib"
 import { BREADCRUMBS } from "../static-data";
 import Baselayout from "./base.layout.astro"
-const { title, icon = null, url, createTime } = Astro.props.frontmatter
+const { title, icon = null, url, createTime, description } = Astro.props.frontmatter
 const breadcrumbs = [
   BREADCRUMBS.home,
   {
@@ -14,7 +14,7 @@ const breadcrumbs = [
 ]
 ---
 
-<Baselayout title={title} breadcrumbs={breadcrumbs}>
+<Baselayout title={title} breadcrumbs={breadcrumbs} description={description}>
   <header class="mb-4">
     <div class="flex flex-col gap-4">
       {

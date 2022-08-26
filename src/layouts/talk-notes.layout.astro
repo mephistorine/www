@@ -29,9 +29,10 @@ const computedBookmarks = [
     icon: null,
   },
 ];
+const description = talk.description
 ---
 
-<Baselayout title={title} breadcrumbs={computedBookmarks}>
+<Baselayout title={title} breadcrumbs={computedBookmarks} description={description}>
   <header class="mb-4">
     <div class="flex flex-col gap-4">
       <h1 class="text-6xl font-bold">{title}</h1>

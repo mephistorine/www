@@ -1,9 +1,8 @@
 ---
-import { Debug } from "astro/components";
 import PageIcon from "../../components/page-icon.svelte";
 import Baselayout from "../../layouts/base.layout.astro";
 import type { Conference, Speach, Talk } from "../../models";
-import { BREADCRUMBS, getAllTalks, getConference } from "../../static-data";
+import { BREADCRUMBS, getAllTalks, getConference, site } from "../../static-data";
 
 interface SpeachForView extends Speach {
   conference: Conference;
@@ -52,6 +51,7 @@ const talks = getAllTalks().map((talk: Talk) => {
 <Baselayout
   title={BREADCRUMBS.talks.name}
   breadcrumbs={[BREADCRUMBS.home, BREADCRUMBS.talks]}
+  description={site.description}
 >
   <header class="mb-4">
     {
