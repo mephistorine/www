@@ -15,7 +15,7 @@
   <li>
     <a
       class="block px-2 py-1 whitespace-nowrap border rounded hover:bg-gray-200"
-      href="/rss/feed.xml"
+      href="/rss.xml"
       target="_blank"
       rel="noreferrer">Подписаться на RSS</a
     >
