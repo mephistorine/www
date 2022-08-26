@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "^1.0.0",
-    "@tailwindcss/typography": "^0.5.4"
+    "@tailwindcss/typography": "^0.5.4",
+    "nanostores": "^0.6.0"
   }
 }

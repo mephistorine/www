@@ -1,3 +1,5 @@
 export * from "./is-has-emoji"
 export * from "./article-compare"
 export * from "./date"
+export * from "./seach-dialog.story"
+export * from "./make-seach-result-string"

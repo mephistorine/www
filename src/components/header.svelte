@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Breadcrumb } from "../models";
-  import Icon from "./icon.svelte";
   import PageIcon from "./page-icon.svelte";
+  import SearchButton from "./search-button.svelte";
 
   export let breadcrumbs: readonly Breadcrumb[] = [];
 </script>
@@ -33,14 +33,7 @@
         <option value="LIGHT">Светлая</option>
         <option selected value="SYSTEM">Системная</option>
       </select>
-      <button class="interactive flex gap-1 items-center">
-        <div class="w-[1em]">
-          <Icon name="search" />
-        </div>
-        <span class="hidden sm:flex gap-2">
-          <span>Найти</span>
-        </span>
-      </button>
+      <SearchButton />
     </div>
   </div>
 </header>

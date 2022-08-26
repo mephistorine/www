@@ -1,10 +1,14 @@
 ---
 import "../global.css";
 import { site } from "../static-data";
+
+import SearchDialog from "../components/search-dialog.svelte"
+
 interface Props {
   title: string;
   description: string;
 }
+
 const { title, description } = Astro.props as Props;
 ---
 
@@ -17,7 +21,7 @@ const { title, description } = Astro.props as Props;
     <meta name="title" content={title} />
     <meta name="description" content={description} />
 
-    <link rel="icon" type="image/png" href="/public/assets/favicon.png" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -47,6 +51,9 @@ const { title, description } = Astro.props as Props;
   </head>
   <body class="text-zinc-800 dark:text-slate-200 dark:bg-zinc-800">
     <slot />
+
+    <SearchDialog client:idle></SearchDialog>
+
     <script defer>
       function applyTheme(name) {
         const html = document.documentElement;
