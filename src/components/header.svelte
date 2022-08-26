@@ -7,7 +7,7 @@
 </script>
 
 <header class="p-2">
-  <div class="max-w-[1440px] flex justify-between">
+  <div class="max-w-[1440px] mx-auto flex justify-between">
     <div>
       <ul class="flex justify-between items-center gap-2">
         {#each breadcrumbs as breadcrumb}
