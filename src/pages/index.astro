@@ -10,9 +10,16 @@ const pages: readonly Breadcrumb[] = [
 	BREADCRUMBS.projects,
 	BREADCRUMBS.about,
 ];
+
+const someFreshArticles = await Astro.glob("./articles/**/*.mdx")
+	.then((articles) => {
+		return articles
+		.sort((a, b) => Date.parse(b.frontmatter.createTime) - Date.parse(a.frontmatter.createTime))
+		.slice(0, 5)
+	})
 ---
 
-<BaseLayout title="Блог" breadcrumbs={[BREADCRUMBS.home]}>
+<BaseLayout title="Главная" breadcrumbs={[BREADCRUMBS.home]}>
 	<div class="flex flex-col gap-8">
 		<section>
 			<ul class="flex justify-between gap-4 flex-col sm:flex-row">
@@ -30,7 +37,7 @@ const pages: readonly Breadcrumb[] = [
 		</section>
 
 		<section>
-			<h2 class="text-3xl font-bold">Привет 👋</h2>
+			<h2 class="text-3xl font-bold mb-4">Привет 👋</h2>
 			<p>
 				Тут я делюсь своим опытом, в разработке приложений и не только.
 				Технический стек Angular, Typescript, RxJS и Leaflet.
@@ -38,7 +45,23 @@ const pages: readonly Breadcrumb[] = [
 		</section>
 
 		<section>
-			<h2 class="text-3xl font-bold">Свежее</h2>
+			<h2 class="text-3xl font-bold mb-4">Свежее</h2>
+			<ul class="pl-4">
+				{
+					someFreshArticles.map((article) => {
+						return (
+							<li class="relative before:content-['—'] before:font-mono before:absolute before:-left-4">
+								<a class="like-link" href={article.url}>
+									{article.frontmatter.icon && (
+										<PageIcon icon={article.frontmatter.icon} size="1em" />
+									)}
+									<span>{article.frontmatter.title}</span>
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
 		</section>
 	</div>
 </BaseLayout>
