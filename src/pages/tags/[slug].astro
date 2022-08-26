@@ -1,0 +1,67 @@
+---
+import PageIcon from "../../components/page-icon.svelte";
+import BaseLayout from "../../layouts/base.layout.astro"
+import type { Article } from "../../models";
+import { BREADCRUMBS, getAllTags, getTag } from "../../static-data";
+
+export function getStaticPaths() {
+  return getAllTags().map((tag) => {
+    return {
+      params: {
+        slug: tag.slug
+      }
+    }
+  })
+}
+
+const { slug } = Astro.params
+
+if (typeof slug === "undefined") {
+  throw new TypeError(`Slug must be defined`)
+}
+
+const tag = getTag(slug as string)
+
+if (typeof tag === "undefined") {
+  throw new TypeError(`Tag with slug="${ slug }" not found`)
+}
+
+const breadcrumbs = [
+  BREADCRUMBS.home,
+  BREADCRUMBS.tags,
+  {
+    name: tag.slug,
+    icon: null,
+    url: `/tags/${ tag.slug }`
+  }
+]
+
+const articleFiles = await Astro.glob<Article>("../articles/**/*.mdx")
+const articles = articleFiles.filter((file) => file.frontmatter.tags.includes(tag.slug))
+---
+<BaseLayout title={ `Метка: ${ tag.slug }` } breadcrumbs={breadcrumbs}>
+  <header class="mb-4">
+    <div>
+      <h1 class="text-6xl font-bold">Метка: {tag.slug}</h1>
+    </div>
+  </header>
+
+  <div>
+    <ul class="pl-4">
+      {
+        articles.map((article) => {
+          return (
+            <li class="relative before:content-['—'] before:font-mono before:absolute before:-left-4">
+              <a class="like-link" href={article.url}>
+                {article.frontmatter.icon && (
+                  <PageIcon icon={article.frontmatter.icon} size="1em" />
+                )}
+                <span>{article.frontmatter.title}</span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</BaseLayout>

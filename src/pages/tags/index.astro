@@ -1,0 +1,29 @@
+---
+import ArticleTag from "../../components/article-tag.svelte";
+import BaseLayout from "../../layouts/base.layout.astro";
+import { BREADCRUMBS, getAllTags } from "../../static-data";
+const tags = getAllTags();
+const breadcrumbs = [BREADCRUMBS.home, BREADCRUMBS.tags];
+---
+
+<BaseLayout title="Метки" breadcrumbs={breadcrumbs}>
+  <header class="mb-4">
+    <div>
+      <h1 class="text-6xl font-bold">Метки</h1>
+    </div>
+  </header>
+
+  <div>
+    <ul class="pl-4">
+      {
+        tags.map((tag) => {
+          return <li class="relative before:content-['—'] before:font-mono before:absolute before:-left-4">
+            <a href={`/tags/${ tag.slug }`}>
+              <ArticleTag slug={tag.slug} />
+            </a>
+          </li>
+        })
+      }
+    </ul>
+  </div>
+</BaseLayout>

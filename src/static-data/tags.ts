@@ -39,6 +39,10 @@ export function getTag(slug: string): ArticleTag | undefined {
   return tags.get(slug)
 }
 
+export function getAllTags(): readonly ArticleTag[] {
+  return Array.from(tags.values())
+}
+
 export {
   tags as TAGS
 }
