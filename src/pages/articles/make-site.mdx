@@ -1,0 +1,29 @@
+---
+title: Как я делал этот сайт
+description: История о том как запускал этот сайт с помощью Astro и на VPS
+layout: ../../layouts/article.layout.astro
+createTime: 2022-08-27T12:29:00.004Z
+updateTime: 2022-08-27T12:29:00.004Z
+tags: []
+icon: null
+poster:
+  src: null
+---
+
+Выписывание SSL сертификатов
+
+```bash
+sudo certbot certonly --standalone -d mephi.dev -d www.mephi.dev
+```
+
+Сборка докер образа
+
+```bash
+docker build -t mephi .
+```
+
+Запуск
+
+```bash
+docker run -d -p 80:80 -p 443:443 -t mephi
+```
