@@ -1,0 +1,15 @@
+name: Deploy mephi.dev site
+on:
+  push:
+    branches: [ master ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.MEPHI_DEPLOY_HOST }}
+        username: ${{ secrets.MEPHI_DEPLOY_USERNAME }}
+        key: ${{ secrets.MEPHI_DEPLOY_SSH_KEY }}
+        script: "./start.mjs"
