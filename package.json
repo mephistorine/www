@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "start": "astro dev --port 4000",
-    "build": "astro check && astro build",
+    "build": "npm run check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "check": "astro check"
   },
   "devDependencies": {
     "@astrojs/mdx": "^0.10.0",

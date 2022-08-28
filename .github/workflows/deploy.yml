@@ -12,4 +12,4 @@ jobs:
         host: ${{ secrets.MEPHI_DEPLOY_HOST }}
         username: ${{ secrets.MEPHI_DEPLOY_USERNAME }}
         key: ${{ secrets.MEPHI_DEPLOY_SSH_KEY }}
-        script: "curl https://raw.githubusercontent.com/mephistorine/www/master/.github/workflows/start.sh | bash"
+        script: "curl https://raw.githubusercontent.com/mephistorine/www/master/misc/start.sh | bash"
