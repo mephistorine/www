@@ -1,5 +1,7 @@
 docker stop mephi-site
 
+cp ./certi/custom.* ./mephi-site/misc/ssl
+
 cd mephi-site
 
 git pull --all
