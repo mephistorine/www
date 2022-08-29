@@ -6,14 +6,23 @@
     "start": "astro dev --port 4000",
     "build": "npm run check && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "size": "size-limit"
   },
+  "size-limit": [
+    {
+      "limit": "7kb",
+      "path": "dist/*.js"
+    }
+  ],
   "devDependencies": {
     "@astrojs/mdx": "^0.10.0",
     "@astrojs/sitemap": "^1.0.0",
     "@astrojs/svelte": "^1.0.0",
     "@astrojs/tailwind": "^1.0.0",
+    "@size-limit/file": "^8.0.1",
     "astro": "^1.0.6",
+    "size-limit": "^8.0.1",
     "svelte": "^3.49.0"
   },
   "dependencies": {
