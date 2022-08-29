@@ -6,7 +6,8 @@ import { formatDate } from "../lib";
 import type { Breadcrumb } from "../models";
 import { BREADCRUMBS } from "../static-data";
 import Baselayout from "./base.layout.astro";
-const { frontmatter } = Astro.props;
+import { Debug } from "astro/components"
+const { frontmatter, headings } = Astro.props;
 
 const breadcrumbs: Breadcrumb[] = [
   BREADCRUMBS.home,
@@ -66,6 +67,23 @@ const breadcrumbs: Breadcrumb[] = [
             }
           </ul>
         </div>
+      </div>
+
+      <div>
+        <details>
+          <summary>Содержание</summary>
+          <ul>
+            {
+              headings.map((header: any) => {
+                return <li style={{ "--level": header.depth - 1, "padding-inline-start": "calc(var(--level) * 1.5rem)" }}><a class="like-link" href={`#${ header.slug }`}>{header.text}</a></li>
+              })
+            }
+          </ul>
+        </details>
+      </div>
+
+      <div>
+        <Debug {Astro.props} />
       </div>
     </div>
   </header>

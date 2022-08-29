@@ -11,8 +11,16 @@
     color-scheme: light dark;
   }
 
+  details {
+    @apply border border-[#aaaaaa] rounded-md p-2
+  }
+  
   summary {
-    @apply cursor-pointer select-none
+    @apply font-bold p-2 -m-2 cursor-pointer select-none
+  }
+  
+  details[open] summary {
+    @apply border border-none -m-2 mb-0
   }
 }
 
@@ -25,7 +33,7 @@
 }
 
 .like-link {
-  @apply border-b border-current hover:border-transparent
+  @apply border-b border-black/20 hover:border-transparent dark:border-white/20 dark:hover:border-transparent
 }
 
 code {
