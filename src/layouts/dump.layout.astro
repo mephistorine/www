@@ -53,46 +53,5 @@ const { title, description } = Astro.props as Props;
     <slot />
 
     <SearchDialog client:idle></SearchDialog>
-
-    <!--<script defer>
-      function applyTheme(name) {
-        const html = document.documentElement;
-
-        const themeName =
-          name === "SYSTEM"
-            ? matchMedia("(prefers-color-scheme: light)").matches
-              ? "LIGHT"
-              : "DARK"
-            : name;
-
-        if (themeName === "DARK") {
-          html.classList.add("dark");
-        } else {
-          html.classList.remove("dark");
-        }
-      }
-
-      /** @type {HTMLSelectElement} */
-      const themeSwitcher = document.querySelector("#theme-switcher");
-      const mediaQueryList = matchMedia("(prefers-color-scheme: light)");
-
-      mediaQueryList.addEventListener("change", (event) => {
-        if (themeSwitcher.value !== "SYSTEM") {
-          return;
-        }
-
-        applyTheme(event.matches ? "LIGHT" : "DARK");
-      });
-
-      themeSwitcher.addEventListener("change", () => {
-        const themeName = themeSwitcher.value;
-        applyTheme(themeName);
-        localStorage.setItem("theme", themeName);
-      });
-
-      const theme = localStorage.getItem("theme") ?? "SYSTEM";
-      themeSwitcher.value = theme;
-      applyTheme(theme);
-    </script>-->
   </body>
 </html>
