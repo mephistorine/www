@@ -28,11 +28,11 @@
     </div>
 
     <div class="flex gap-2">
-      <select id="theme-switcher" class="bg-transparent">
+      <!--<select id="theme-switcher" class="bg-transparent">
         <option value="DARK">Темная</option>
         <option value="LIGHT">Светлая</option>
         <option selected value="SYSTEM">Системная</option>
-      </select>
+      </select>-->
       <SearchButton />
     </div>
   </div>
