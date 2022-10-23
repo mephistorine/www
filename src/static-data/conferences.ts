@@ -54,6 +54,12 @@ const conferences: readonly Conference[] = [
     name: "Frontend/JS-пикник в Зеленом театре",
     url: "https://rndtech.timepad.ru/event/2124507/",
     location: "Россия, Ростов-на-Дону"
+  },
+  {
+    id: "frontendconf-2022",
+    name: "FrontendConf 2022",
+    url: "https://frontendconf.ru",
+    location: "Россия, Москва"
   }
 ]
 
