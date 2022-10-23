@@ -22,7 +22,7 @@ import { BREADCRUMBS } from "../static-data";
       set([])
       return
     }
-    
+
     const results: readonly ResultItem[] = data.entities
       .map<ResultItem>((entity) => {
         if (entity.type === "ARTICLE") {
@@ -106,6 +106,7 @@ import { BREADCRUMBS } from "../static-data";
           <Icon name="search" />
         </div>
 
+        <!-- svelte-ignore a11y-autofocus -->
         <input
           on:input={onInput}
           class="flex-grow outline-0 p-2 pl-10"
