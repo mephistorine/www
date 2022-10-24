@@ -1,5 +1,8 @@
 echo "Останавливаем предыдущий контейнер"
-docker stop mephi-site
+docker kill mephi-site
+
+echo "Уничтожение контейнера"
+docker rm mephi-site
 
 echo "Копируем TSL сертификаты"
 cp ./certi/custom.* ./mephi-site/misc/ssl
