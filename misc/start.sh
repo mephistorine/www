@@ -17,4 +17,4 @@ echo "Начинаем сборку"
 docker build -t mephi-site .
 
 echo "Запускаем контейнер"
-docker run mephi-site -d -p 80:80 -p 443:443
+docker run --name mephi-site -d -p 80:80 -p 443:443
