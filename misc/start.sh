@@ -14,7 +14,7 @@ echo "Подтягиваем последние изменения"
 git pull --all
 
 echo "Начинаем сборку"
-docker build -t mephi-site .
+docker build -t mephisite .
 
 echo "Запускаем контейнер"
-docker run --name mephi-site -d -p 80:80 -p 443:443
+docker run -d -p 80:80 -p 443:443 mephisite
