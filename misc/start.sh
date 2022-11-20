@@ -1,5 +1,5 @@
 echo "Останавливаем предыдущий контейнер"
-docker stop mephisite
+docker kill mephisite
 
 echo "Уничтожение контейнера"
 docker rm mephisite
