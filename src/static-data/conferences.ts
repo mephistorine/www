@@ -60,6 +60,12 @@ const conferences: readonly Conference[] = [
     name: "FrontendConf 2022",
     url: "https://frontendconf.ru",
     location: "Россия, Москва"
+  },
+  {
+    id: "holyjs-autumn-2022",
+    name: "HolyJS Autumn 2022",
+    url: "https://holyjs.ru",
+    location: "Россия, Москва"
   }
 ]
 

@@ -6,7 +6,6 @@ import { formatDate } from "../lib";
 import type { Breadcrumb } from "../models";
 import { BREADCRUMBS } from "../static-data";
 import Baselayout from "./base.layout.astro";
-import { Debug } from "astro/components"
 const { frontmatter, headings } = Astro.props;
 
 const breadcrumbs: Breadcrumb[] = [
@@ -80,10 +79,6 @@ const breadcrumbs: Breadcrumb[] = [
             }
           </ul>
         </details>
-      </div>
-
-      <div>
-        <Debug {Astro.props} />
       </div>
     </div>
   </header>
