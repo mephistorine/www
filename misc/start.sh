@@ -1,8 +1,8 @@
-echo "Останавливаем предыдущий контейнер"
-docker kill mephisite
+echo "Удаляем директорию"
+rm -rf mephi-site || true
 
-echo "Уничтожение контейнера"
-docker rm mephisite
+echo "Клонируем проект"
+git clone https://github.com/mephistorine/www.git --depth 1 mephi-site
 
 echo "Копируем TSL сертификаты"
 cp ./certi/custom.* ./mephi-site/misc/ssl
@@ -10,11 +10,14 @@ cp ./certi/custom.* ./mephi-site/misc/ssl
 echo "Переходим в директорию с проектом"
 cd mephi-site
 
-echo "Подтягиваем последние изменения"
-git pull --all
+echo "Останавливаем предыдущий контейнер"
+docker kill mephisite
+
+echo "Уничтожение контейнера"
+docker rm mephisite --volumes
 
 echo "Начинаем сборку"
-docker build -t mephisite .
+docker build --tag mephisite .
 
 echo "Запускаем контейнер"
-docker run -d -p 80:80 -p 443:443 mephisite
+docker run --detach --publish 80:80 --publish 443:443 --name mephisite
