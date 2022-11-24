@@ -1,5 +1,6 @@
 .vscode/
 .idea/
+.wireit/
 
 dist/
 
@@ -10,10 +11,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 .env
 .env.production
 
 .DS_Store
 
 README.md
+LICENSE

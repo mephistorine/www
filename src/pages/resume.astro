@@ -1,0 +1,155 @@
+---
+import "../global.css";
+import BaseLayout from "../layouts/base.layout.astro";
+import type { Breadcrumb } from "../models";
+import { BREADCRUMBS } from "../static-data";
+const breadcrumbs: Breadcrumb[] = [
+  BREADCRUMBS.home,
+  BREADCRUMBS.resume
+];
+
+const waliotWorkYear: number = Math.round((Date.now() - new Date(2018, 8, 24, 0, 0, 0).getTime()) / 1000 / 60 / 60 / 24 / 365)
+const kddYear: number = Math.round((Date.now() - new Date(2022, 0, 1, 0, 0, 0).getTime()) / 1000 / 60 / 60 / 24 / 365)
+---
+
+<BaseLayout
+  title="Резюме"
+  description="Резюме — Сэм Булатов"
+  breadcrumbs={breadcrumbs}
+>
+  <main class="dark:bg-zinc-800 dark:text-slate-200">
+    <header class="flex flex-col gap-4 mb-4">
+      <div class="flex flex-col gap-2">
+        <h1 class="text-6xl font-bold">Сэм Булатов</h1>
+        <h2 class="text-3xl font-bold">Разработчик пользовательских интерфейсов</h2>
+        <p>Краснодар, Россия</p>
+      </div>
+
+      <div>
+        <p>Основные технологии:</p>
+
+        <ul class="flex gap-2">
+          <li>
+            <img class="block w-10" src="/assets/logos/html.svg" alt="Логотип языка «HTML»" />
+          </li>
+          <li><img class="block w-10" src="/assets/logos/css.svg" alt="Логотип языка «CSS»" /></li>
+          <li>
+            <img
+              class="block w-10"
+              src="/assets/logos/javascript.svg"
+              alt="Логотип языка «JavaScript»"
+            />
+          </li>
+          <li>
+            <img
+              class="block w-10"
+              src="/assets/logos/typescript.svg"
+              alt="Логотип языка «TypeScript»"
+            />
+          </li>
+          <li>
+            <img
+              class="block w-10"
+              src="/assets/logos/angular.svg"
+              alt="Логотип фреймворка «Angular»"
+            />
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p>Ведущий фронт в Waliot из Краснодара, а так же организую мероприятия <a class="like-link" target="_blank" href="https://krd.dev">krd.dev</a>. Люблю Angular и участвую в OSS, перевожу <a class="like-link" target="_blank" href="https://rxjs-ru.netlify.app/">документацию RxJS на русский язык</a>, участник подкаста <a class="like-link" target="_blank" href="https://github.com/ngRuAir/ngruair">NgRuAir</a> и тащусь по аниме и манге.</p>
+      </div>
+    </header>
+
+    <section class="flex flex-col gap-4">
+      <div>
+        <h2 class="text-3xl font-bold mb-4">Опыт</h2>
+
+        <div class="flex flex-col gap-4">
+          <article class="flex flex-col gap-2 items-start sm:flex-row sm:gap-4">
+            <img
+              class="max-w-[50px] rounded"
+              src="/assets/logos/waliot.png"
+              alt="Логотип продукта «Waliot»"
+            />
+
+            <div>
+              <header>
+                <div>
+                  <h3 class="text-2xl font-bold">Waliot</h3>
+                  <p>Разработчик пользовательских интерфейсов • Full-Time</p>
+                  <p class="text-zinc-400">Сен. 2018 — настоящее (<span>{ waliotWorkYear } г. </span>)</p>
+                </div>
+              </header>
+  
+              <div class="flex flex-col gap-2">
+                <h4 class="text-lg font-bold">Инструменты:</h4>
+  
+                <ul class="flex gap-2">
+                  <li>Angular</li>
+                  <li>Gitlab</li>
+                  <li>Leaflet</li>
+                  <li>NodeJS</li>
+                </ul>
+  
+                <div>
+                  <p>
+                    Компания предоставляет ПО для мониторинга транспорта. Я
+                    занимаюсь разработкой веб-приложения через которое
+                    пользователи, могут отследить местоположение на карте,
+                    планировать ТО, получать уведомления, строить отчеты которые
+                    позволяют отслеживать разного рода показатели: уровень
+                    топлива, напряжение и т.д.
+                  </p>
+
+                  <ul class="list-disc pl-[1.1rem]">
+                    <li>Отрисовка 10К+ ТС на карте</li>
+                    <li>Разработка компонента отображения дерева 20К+ узлов(поиск)</li>
+                    <li>Frontops</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="flex flex-col gap-2 items-start sm:flex-row sm:gap-4">
+            <img
+              class="max-w-[50px] rounded"
+              src="/assets/logos/krd.dev.png"
+              alt="Логотип сообщества «krd.dev»"
+            />
+
+            <div>
+              <header>
+                <div>
+                  <h3 class="text-2xl font-bold"><a class="like-link" target="_blank" href="https://krd.dev">krd.dev</a></h3>
+                  <p>Организатор. Отвечаю за Frontend направление • Full-Time</p>
+                  <p class="text-zinc-400">Янв. 2022 — настоящее. (<span>{ kddYear } г.</span>)</p>
+                </div>
+              </header>
+  
+              <div class="flex flex-col gap-2">
+                <div>
+                  <p>Организация мероприятий связанных с IT разработкой. Поиск докладчиков и их полная подготовка к выступлению. Подготовка программы мероприятия.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-3xl font-bold mb-4">
+          <a class="like-link" href={BREADCRUMBS.about.url}>Контакты</a>
+        </h2>
+      </div>
+
+      <div>
+        <h2 class="text-3xl font-bold mb-4">
+          <a class="like-link" href={BREADCRUMBS.talks.url}>Выступления и публичная деятельность</a>
+        </h2>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

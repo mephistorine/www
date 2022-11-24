@@ -3,11 +3,29 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "astro dev --port 4000",
-    "build": "npm run check && astro build",
-    "preview": "astro preview",
-    "check": "astro check",
-    "size": "size-limit"
+    "start": "wireit",
+    "build": "wireit",
+    "preview": "wireit",
+    "check": "wireit",
+    "size": "wireit"
+  },
+  "wireit": {
+    "start": {
+      "command": "astro dev --port 4000"
+    },
+    "build": {
+      "command": "astro build",
+      "dependencies": [ "check" ]
+    },
+    "preview": {
+      "command": "astro preview"
+    },
+    "check": {
+      "command": "astro check"
+    },
+    "size": {
+      "command": "size-limit"
+    }
   },
   "size-limit": [
     {
@@ -23,7 +41,8 @@
     "@size-limit/file": "^8.0.1",
     "astro": "^1.0.6",
     "size-limit": "^8.0.1",
-    "svelte": "^3.49.0"
+    "svelte": "^3.49.0",
+    "wireit": "^0.8.0"
   },
   "dependencies": {
     "@astrojs/rss": "^1.0.0",

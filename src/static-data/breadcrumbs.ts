@@ -1,6 +1,6 @@
 import type { Breadcrumb } from "../models"
 
-type BreadcrumbPages = "home" | "talks" | "articles" | "projects" | "about" | "tags"
+type BreadcrumbPages = "home" | "talks" | "articles" | "projects" | "about" | "tags" | "resume"
 
 export const BREADCRUMBS: Record<BreadcrumbPages, Breadcrumb> = {
   home: {
@@ -32,5 +32,10 @@ export const BREADCRUMBS: Record<BreadcrumbPages, Breadcrumb> = {
     name: "Метки",
     icon: null,
     url: "/tags"
+  },
+  resume: {
+    name: "Резюме",
+    icon: "🎃",
+    url: "/resume"
   }
 }

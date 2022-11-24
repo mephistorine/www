@@ -18,8 +18,8 @@ const { breadcrumbs, title, description = "", enableWrap = true } = Astro.props 
 
 <DumpLayout title={title} description={description}>
   <Header breadcrumbs={breadcrumbs} client:idle />
-    <main class:list={{ wrap: enableWrap }} class="py-4">
-      <slot />
-    </main>
-    <Footer />
+  <main class:list={{ wrap: enableWrap }} class="py-4">
+    <slot />
+  </main>
+  <Footer />
 </DumpLayout>
