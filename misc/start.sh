@@ -20,4 +20,4 @@ echo "Начинаем сборку"
 docker build --tag mephisite .
 
 echo "Запускаем контейнер"
-docker run --detach --publish 80:80 --publish 443:443 --name mephisite
+docker run --detach --publish 80:80 --publish 443:443 --name mephisite mephisite
