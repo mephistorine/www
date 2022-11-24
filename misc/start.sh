@@ -11,13 +11,13 @@ echo "Переходим в директорию с проектом"
 cd mephi-site
 
 echo "Останавливаем предыдущий контейнер"
-docker kill mephisite
+docker kill mephi-container
 
 echo "Уничтожение контейнера"
-docker rm mephisite --volumes
+docker rm mephi-container --volumes
 
 echo "Начинаем сборку"
 docker build --tag mephisite .
 
 echo "Запускаем контейнер"
-docker run --detach --publish 80:80 --publish 443:443 --name mephisite mephisite
+docker run --detach --publish 80:80 --publish 443:443 --name mephi-container mephisite
